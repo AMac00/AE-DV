@@ -1,0 +1,11 @@
+[Unit]
+Description=LoadGenerator Service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /var/AgentEmulator/LoadGen-service.py
+
+[Install]
+WantedBy=multi-user.target

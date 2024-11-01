@@ -1,0 +1,17 @@
+import pymongo
+
+## Because I am lazy and don't want to  update the DB ever time I want to test.
+# Use this URl after you login to get current token
+# https://fin125.dv.ccenterprisecloud.com:8445/desktop/sso/token?cc_username=1005550071
+
+
+token = "111eyJjdHkiOiJKV1QiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..UoGDRjYaXh0Wafd1dhXAXg.M5zMYbjTe6Xi6qGsRIB_OUPPHCENQjxyPPVNEqz-rvIsctMNRMxPmv7weBFVX8dIUREsJCMPcWCYcddB2aszt1ii7wFuFzQu-kRQBWOqw3Z6OKstPQcsuBlXkt4XrQOg0A0g9Xh7SVEA2hjy8LpI0xBN7AFdGxvMX8CU9-4rTZggOyvDpI12NCY25swtfFX50YdrrveDS7JiWA9CzBErAGrlrQaq8WT08eK-rsENKYtZPF6GxngdmQ5Q3ACTCZ_4sfK6rlSVWrMy95q1OGdUsLKY7lARUwuzoXgLN9xCIAqNk_3ZJCNOxNBItq0f06ib-N015PVXWSQL4ENMN79uOkOU4K6ZN_5XZD6ccqrLTUevDcVbr1zMM_3VYfpkzjFDmZxWhvmCDLgyyow-RFM_nwwtlI0EP-e-MRIihvCAUwnPIbtmv9X8KOhPSdJLx8Fohp92CSw8iWu9aPkAwkRcuoPsLCZtZPhEViQLbGRbkVcpO15mtQocutdBNBUPVbuRp8ogerbCWOCARQRET9CWC0OsTXrvpzjRsTnVJoYQpDY6LM-_0dubdiRUvLWJjzsKWN3gue5pSeFDq9JmoSG-dgdo2fdXFXqXwFajNpheLg8HGykYEksAVXhS3nBZSb_qXEDgd2-yQ6SNY3ZO-8ejGTIMAE0nb8UvsVgWKZ5DJlr1FwKu1L4NggCgO1-sG64cozgM3pP5EMf8Y_erjKHIURoeuhRyaIf2gvRyf9FVyei6L9XEXcgviTqMW9uZmgmhOtdLsCvrTNljG5VlvWgBRkEVsOqC9_u3-g-WXgufoP477nJWqk38yjYNgPMOaiDvz0RQ8v19_ilxRNFiViIXJ0VSoyBo27MFlrIKrDLAFUwsXHHVt5ryVZRZiLwVfuXRFqAb8mTFdqBc3HKfmEL05nTY-_AiPuleHqtKBgF5ap9TI5xuooXcyDy87jLO781cwEr2TD6mZJ9Fybkx0nPx1FuXivLuwNseFmJt5-fmf1SekBlcP3jQGvrvQefncjaa61fSRbY07m9Bg7diOTfxps4Pt67Mib1HYgSm0XyByL4.gkIzA--uCsnqrtEXGtQUbQ"
+user = '1005550071'
+
+client = pymongo.MongoClient('localhost', 27017)
+db = client['aedb']
+col_agents = db['agents']
+col_agents.find_one_and_update({"dn": '{0}'.format(user)}, {
+    "$set": {'token': '{0}'.format(token)}})
+
+
